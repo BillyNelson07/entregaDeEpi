@@ -6,7 +6,7 @@ const { createClient } = require('@supabase/supabase-js');
 require('dotenv').config();
 
 //cria a const que tem como valor a url do meu banco de dados dos supabase, para o programa em qual banco de dados operar. protegido com o env.
-const supaBaseUrl = process.env.SUPABASE_URL;
+const supaBaseUrl = 'https://tvnvvuhloyltqewukyqr.supabase.co';
 
 
 //chave publica que permite que as requisicoes leiam e escrevam dados. protegido com o env.
