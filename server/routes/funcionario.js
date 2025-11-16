@@ -2,11 +2,9 @@ const express = require('express');
 const router = express.Router();
 const supabase = require('../supabaseClient');
 
-
-//funcao get para retornar todos os valores
-router.get('/', async function(req,res){
+router.get('/', async function(req, res){
     const { data, error } = await supabase
-        .from('epi')
+        .from('funcionario')
         .select('*')
     if(error) {
         return res.status(204).json( { erro: error.message });
@@ -14,13 +12,12 @@ router.get('/', async function(req,res){
     res.json({mensagem: 'Registros retornaram com sucesso', data});
 });
 
-//funcao get para item especifico. retorna todas as coluna do registro em questao
 router.get('/:id', async function(req,res){
     const { id } = req.params;
     const { data, error } = await supabase
-        .from('epi')
+        .from('funcionario')
         .select('*')
-        .eq('id_epi', id)
+        .eq('id_funcionario', id)
         .single()
     if(error) {
         return res.status(204).json( { erro: error.message });
@@ -28,12 +25,11 @@ router.get('/:id', async function(req,res){
     res.json({mensagem: 'Registro retornou com sucesso', data});
 });
 
-
 router.post('/', async function(req, res){
-    const { nome, descricao, ca } = req.body;
+    const { funcionario } = req.body;
     const { data, error } = await supabase
-        .from('epi')
-        .insert([{ nome, descricao, ca }]);
+        .from('funcionario')
+        .insert([{ funcionario }]);
     if (error) {
         return res.status(500).json({ erro: error.message });
     }
@@ -43,29 +39,11 @@ router.post('/', async function(req, res){
 router.delete('/:id', async function(req, res){
     const { id } = req.params;
     const { data, error} = await supabase
-        .from('epi')
+        .from('funcionario')
         .delete()
-        .eq('id_epi',  id)
+        .eq('id_funcionario',  id)
     if (error) {
         return res.status(400).json({ erro: error.message });
     }
     res.json({ mensagem: 'Delete deu certo', data });
 });
-
-router.put('/:id', async function(req, res){
-    const { id } = req.params;
-    const { nome, descricao, ca} = req.body;
-    const { data, error} = await supabase
-        .from('epi')
-        .update(
-            {"nome" : nome, 
-            "descricao" : descricao, 
-            "ca" : ca})
-        .eq('id_epi',  id)
-    if (error) {
-        return res.status(400).json({ erro: error.message });
-    }
-    res.json({ mensagem: 'Atualização deu certo', data });
-});
-
-module.exports = router;

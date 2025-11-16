@@ -1,4 +1,3 @@
-//importar express
 const express = require('express');
 const { supabaseUrl } = require('./supabaseClient');
 const supabase = require('./supabaseClient');
@@ -20,5 +19,3 @@ app.use('/epi', epiRoutes);
 app.listen(PORT, () => {
     console.log(`Servidor rodando na porta ${PORT}`);    
 });
-
-
