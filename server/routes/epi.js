@@ -21,7 +21,6 @@ router.get('/:id', async function(req,res){
         .from('epi')
         .select('*')
         .eq('id_epi', id)
-        .single()
     if(error) {
         return res.status(204).json( { erro: error.message });
     }
@@ -30,10 +29,10 @@ router.get('/:id', async function(req,res){
 
 
 router.post('/', async function(req, res){
-    const { nome, descricao, ca } = req.body;
+    const { nome, ca } = req.body;
     const { data, error } = await supabase
         .from('epi')
-        .insert([{ nome, descricao, ca }]);
+        .insert([{ nome, ca }]);
     if (error) {
         return res.status(500).json({ erro: error.message });
     }
@@ -54,12 +53,11 @@ router.delete('/:id', async function(req, res){
 
 router.put('/:id', async function(req, res){
     const { id } = req.params;
-    const { nome, descricao, ca} = req.body;
+    const { nome, ca} = req.body;
     const { data, error} = await supabase
         .from('epi')
         .update(
             {"nome" : nome, 
-            "descricao" : descricao, 
             "ca" : ca})
         .eq('id_epi',  id)
     if (error) {

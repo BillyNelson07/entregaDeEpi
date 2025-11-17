@@ -3,10 +3,10 @@ const router = express.Router();
 const supabase = require('../supabaseClient');
 
 router.get('/', async function(req, res){
-    const { data, error } = await supabase
-        .from('funcionario')
-        .select('*')
-    if(error) {
+    const { data, error} = await supabase
+    .from('entrega_epi')
+    .select('*')
+    if(error){
         return res.status(204).json( { erro: error.message });
     }
     res.json({mensagem: 'Registros retornaram com sucesso', data});
@@ -15,9 +15,9 @@ router.get('/', async function(req, res){
 router.get('/:id', async function(req,res){
     const { id } = req.params;
     const { data, error } = await supabase
-        .from('funcionario')
+        .from('entrega_epi')
         .select('*')
-        .eq('id_funcionario', id)
+        .eq('id_entrega', id)
     if(error) {
         return res.status(204).json( { erro: error.message });
     }
@@ -25,22 +25,31 @@ router.get('/:id', async function(req,res){
 });
 
 router.post('/', async function(req, res){
-    const { nome } = req.body;
-    const { data, error } = await supabase
+    const { id_func, data_ent } = req.body;
+    //verifica se o funcionário existe
+    const { data: funcionario, error: errorFuncionario } = await supabase
         .from('funcionario')
-        .insert([{ nome }])
+        .select('*')
+        .eq('id_func', id_func)
+    if (errorFuncionario || !funcionario) {
+        return res.status(404).json({ erro: `Funcionário ID ${id_func} não encontrado` });
+    }
+    //faz o insert na entrega_epi se o funcionario existir
+    const { data, error } = await supabase
+        .from('entrega_epi')
+        .insert([{ id_func, data_ent }]);
     if (error) {
         return res.status(500).json({ erro: error.message });
     }
-    res.json({ mensagem: 'Inserção deu certo', data });
+    res.json({ mensagem: 'Inserção deu certo', data});
 });
 
 router.delete('/:id', async function(req, res){
     const { id } = req.params;
     const { data, error} = await supabase
-        .from('funcionario')
+        .from('entrega_epi')
         .delete()
-        .eq('id_funcionario',  id)
+        .eq('id_entrega',  id)
     if (error) {
         return res.status(400).json({ erro: error.message });
     }
@@ -49,12 +58,12 @@ router.delete('/:id', async function(req, res){
 
 router.put('/:id', async function(req, res){
     const { id } = req.params;
-    const { nome } = req.body;
+    const { data_ent } = req.body;
     const { data, error} = await supabase
-        .from('funcionario')
+        .from('entrega_epi')
         .update(
-            {"nome" : nome})
-        .eq('id_func',  id)
+            {"data_ent" : data_ent})
+        .eq('id_entrega',  id)
     if (error) {
         return res.status(400).json({ erro: error.message });
     }
