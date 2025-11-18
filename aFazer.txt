@@ -1,0 +1,10 @@
+##ver sobre a rota de item_entrega
+
+##fazer todos os controllers
+
+##fazer camada de services para receber dados dos controllers e passar para a camada repository
+
+##fazer camada de repository para receber os pedidos do service e retornar os dados para o service fazer sua próprias 
+funções sem acesso direto ao BD
+
+

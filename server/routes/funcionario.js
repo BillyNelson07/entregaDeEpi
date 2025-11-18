@@ -1,28 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const supabase = require('../supabaseClient');
+const funcionarioController = require('../controllers/funcionarioController');
 
-router.get('/', async function(req, res){
-    const { data, error } = await supabase
-        .from('funcionario')
-        .select('*')
-    if(error) {
-        return res.status(204).json( { erro: error.message });
-    }
-    res.json({mensagem: 'Registros retornaram com sucesso', data});
-});
+router.get('/', funcionarioController.getAllFuncionarios);
 
-router.get('/:id', async function(req,res){
-    const { id } = req.params;
-    const { data, error } = await supabase
-        .from('funcionario')
-        .select('*')
-        .eq('id_funcionario', id)
-    if(error) {
-        return res.status(204).json( { erro: error.message });
-    }
-    res.json({mensagem: 'Registro retornou com sucesso', data});
-});
+router.get('/:id', funcionarioController.getFuncionarioById);
 
 router.post('/', async function(req, res){
     const { nome } = req.body;
