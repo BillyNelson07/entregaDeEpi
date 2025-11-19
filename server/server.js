@@ -12,20 +12,20 @@ const PORT = 3000;
 app.use(express.json());
 
 // importar e usar as rotas da tabela epi
-const epiRoutes = require('./routes/epi');
+const epiRoutes = require('./routes/epiRoutes');
 app.use('/epi', epiRoutes);
 
 //importar e usar as rotas da tabela funcionario
-const funcionarioRoutes = require('./routes/funcionario');
+const funcionarioRoutes = require('./routes/funcionarioRoutes');
 app.use('/funcionario', funcionarioRoutes);
 
 //importar e usar as rotas da tabela entrega_epi
-const entrega_epiRoutes = require('./routes/entrega_epi');
-app.use('/entrega_epi', entrega_epiRoutes)
+const entregaEpiRoutes = require('./routes/entregaEpiRoutes');
+app.use('/entrega_epi', entregaEpiRoutes)
 
 //importar e usar as rotas da tabela item_entrega
-const item_entregaRouter = require('./routes/item_entrega');
-app.use('/item_entrega', item_entregaRouter);
+// const item_entregaRouter = require('./routes/item_entrega');
+// app.use('/item_entrega', item_entregaRouter);
 
 //coloca o servidor no ar
 app.listen(PORT, () => {

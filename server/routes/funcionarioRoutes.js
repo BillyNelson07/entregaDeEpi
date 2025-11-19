@@ -7,16 +7,7 @@ router.get('/', funcionarioController.getAllFuncionarios);
 
 router.get('/:id', funcionarioController.getFuncionarioById);
 
-router.post('/', async function(req, res){
-    const { nome } = req.body;
-    const { data, error } = await supabase
-        .from('funcionario')
-        .insert([{ nome }])
-    if (error) {
-        return res.status(500).json({ erro: error.message });
-    }
-    res.json({ mensagem: 'Inserção deu certo', data });
-});
+router.post('/', funcionarioController.postFuncionario);
 
 router.delete('/:id', async function(req, res){
     const { id } = req.params;
