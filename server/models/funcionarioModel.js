@@ -38,37 +38,34 @@ const postFuncionario = async function(nome_func){
 };
 
 const putFuncionario = async function(id_func, nome_func){
-
+    const { data, error} = await supabase
+        .from('funcionario')
+        .update(
+            {"nome" : nome_func})
+        .eq('id_func',  id_func)
+        .select()
+    if (error) {
+        throw new Error('Falha ao atualizar registro: ' + error.message);
+    }
+    return data;
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+const deleteFuncionario = async function(id_func){
+    const { data, error } = await supabase
+        .from('funcionario')
+        .delete()
+        .eq('id_func', id_func)
+        .select()
+    if(error){
+        throw new Error('Falha ao apagar registro: ' + error.message);
+    }
+    return data;
+};
 
 module.exports = {
     getAllFuncionariosInDataBase,
     getFuncionarioById,
-    postFuncionario
+    postFuncionario,
+    putFuncionario,
+    deleteFuncionario
 };
