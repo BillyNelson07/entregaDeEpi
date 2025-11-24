@@ -47,6 +47,9 @@ const putFuncionario = async function(id_func, nome_func){
     if (error) {
         throw new Error('Falha ao atualizar registro: ' + error.message);
     }
+    if(!data || data.length === 0){
+        throw new Error('Funcionário não existe: ' + error.message);
+    }
     return data;
 };
 

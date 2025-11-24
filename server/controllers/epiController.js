@@ -35,50 +35,49 @@ const postEpi =  async function(req, res){
     };
 };
 
-// put async function(req, res){
-//     const { id } = req.params;
-//     const { nome, ca} = req.body;
-//     const { data, error} = await supabase
-//         .from('epi')
-//         .update(
-//             {"nome" : nome, 
-//             "ca" : ca})
-//         .eq('id_epi',  id)
-//     if (error) {
-//         return res.status(400).json({ erro: error.message });
-//     }
-//     res.json({ mensagem: 'Atualização deu certo', data });
-// });
+const putEpi = async function(req, res){
+    const { id } = req.params;
+    const { nome, ca} = req.body;
+    try{
+        const alterEpi = await epiModel.putEpi(id, nome, ca);
 
-// patch  async function(req, res){
-//     const { id } = req.params;
-//     const { nomeColuna, novoDado } = req.body;
-//     const objetoParaUpdate = {};
-//     objetoParaUpdate[nomeColuna] = novoDado;
-//     const { data, error} = await supabase
-//         .from('epi')
-//         .update(objetoParaUpdate)
-//         .eq('id_epi',  id)
-//     if (error) {
-//         return res.status(400).json({ erro: error.message });
-//     }
-//     res.json({ mensagem: 'Atualização deu certo', data });
-// });
+        return res.status(200).json({ mensagem: 'Registro alterado com sucesso', Resultado : alterEpi });
+    }catch(error){
+        console.error('Erro ao alterar dados do EPI: ', error.message); //para fins de debug
+        return res.status(500).json({ erro : error.message });
+    }
+};
 
-// delete  async function(req, res){
-//     const { id } = req.params;
-//     const { data, error} = await supabase
-//         .from('epi')
-//         .delete()
-//         .eq('id_epi',  id)
-//     if (error) {
-//         return res.status(400).json({ erro: error.message });
-//     }
-//     res.json({ mensagem: 'Delete deu certo', data });
-// });
+const patchEpi = async function(req, res){
+    const { id } = req.params;
+    const { nomeColuna, novoDado } = req.body;
+    try{
+        const changeEpi = await epiModel.patchEpi(id, nomeColuna, novoDado);
+
+        return res.status(200).json({ mensagem: 'Registro alterado com sucesso', Resultado : changeEpi });
+    }catch(error){
+        console.error('Erro ao alterar dados do EPI: ', error.message); //para fins de debug
+        return res.status(500).json({ erro : error.message });
+    }
+};
+
+const deleteEpi = async function(req, res){
+    const { id } = req.params;
+    try{
+        const eraseEpi = await epiModel.deleteEpi(id);
+
+        return res.status(200).json({ mensagem : 'Registro apagado com sucesso', Resultado : eraseEpi });
+    }catch(error){
+        console.error('Erro ao excluir EPI: ', error.message); //para fins de debug
+        return res.status(500).json({ erro : error.message });
+    }
+};
 
 module.exports = {
     getAllEpi,
     getEpiById,
-    postEpi
+    postEpi,
+    putEpi,
+    patchEpi,
+    deleteEpi
 }

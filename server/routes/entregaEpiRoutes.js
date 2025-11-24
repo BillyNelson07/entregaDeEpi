@@ -1,16 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const supabase = require('../supabaseClient');
+const entregaEpiController = require('../controllers/entregaEpiController');
 
-router.get('/', async function(req, res){
-    const { data, error} = await supabase
-    .from('entrega_epi')
-    .select('*')
-    if(error){
-        return res.status(204).json( { erro: error.message });
-    }
-    res.json({mensagem: 'Registros retornaram com sucesso', data});
-});
+router.get('/', entregaEpiController.getAllEntregasEpi);
 
 router.get('/:id', async function(req,res){
     const { id } = req.params;

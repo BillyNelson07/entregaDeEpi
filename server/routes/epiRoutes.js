@@ -13,13 +13,10 @@ router.get('/:id', epiController.getEpiById);
 
 router.post('/', epiController.postEpi);
 
-// router.put('/:id', );
+router.put('/:id', epiController.putEpi);
 
-// router.patch('/:id', );
+router.patch('/:id', epiController.patchEpi);
 
-// router.delete('/:id', );
-
-
-
+router.delete('/:id', epiController.deleteEpi);
 
 module.exports = router;
