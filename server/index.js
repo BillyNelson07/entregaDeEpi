@@ -1,13 +1,14 @@
 const express = require('express');
 const { supabaseUrl } = require('./supabaseClient');
 const supabase = require('./supabaseClient');
+const cors = require('cors')
 
 //chama o express para usar suas funcionalidades
 const app = express();
 
 //define a porta para o servidor
-const PORT = 3000;
-
+const PORT = 3001;
+app.use(cors())
 //middleware para o express ler as requisicoes que vem em formato json
 app.use(express.json());
 

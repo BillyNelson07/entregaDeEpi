@@ -4,7 +4,7 @@ const getAllFuncionarios = async function (req, res){
     try{
         const allFuncionarios = await funcionarioModel.getAllFuncionariosInDataBase();
         
-        return  res.status(200).json({mensagem : 'Registros retornaram com sucesso', Resultado : allFuncionariosllFuncionarios });
+        return  res.status(200).json({mensagem : 'Registros retornaram com sucesso', Resultado : allFuncionarios });
 
     }catch(error){
         console.error('Erro ao buscar funcionários: ', error.message); //para fins de debug
