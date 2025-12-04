@@ -1,11 +1,26 @@
 import './style.css';
+import Trash from '../../assets/trash.svg'
 
 function CadastroEpi() {
 
   return (
-      <div>
-        <header>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium sit unde fugiat harum assumenda aliquid minus maxime magnam dolorem maiores quo accusantium, blanditiis id! Repellendus iusto cumque hic optio! Esse!</header>
+    <div className='formContainer'>
+      <form>
+        <header>Cadastro de EPI</header>
+        <input name='nome' type='text' placeholder='Nome' />
+        <input name='ca' type='text' placeholder='CA' />
+        <button type='button'>Cadastrar</button>
+      </form>
+      <div className='card'>
+        <div className='epi'>
+          <p>Nome:</p>
+          <span>Ca:</span>
+        </div>
+        <button>
+          <img src={Trash} alt="" />
+        </button>
       </div>
+    </div>
   )
 }
 
