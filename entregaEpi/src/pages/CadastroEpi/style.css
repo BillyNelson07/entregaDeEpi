@@ -36,10 +36,23 @@ form {
     opacity: 0.8;
   }
 }
-
+.cards{
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+  align-items: center;
+}
 .card{
   background-color: rgba(0, 0, 0, 0.349);
   padding: 20px;
   display: flex;
   justify-content: space-between;
+  max-width: 65%;
+  width: 500px;
+  border-radius: 20px;
+
+  &button{
+    background: transparent;
+  }
 }
+
