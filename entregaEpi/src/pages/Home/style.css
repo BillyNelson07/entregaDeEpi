@@ -37,14 +37,14 @@ navigator {
     }
 }
 
-.cards {
+.homeCards {
     display: flex;
     flex-direction: column;
     row-gap: 15px;
     align-items: center;
 }
 
-.card {
+.homeCard {
     background-color: rgba(0, 0, 0, 0.349);
     padding: 20px;
     display: flex;

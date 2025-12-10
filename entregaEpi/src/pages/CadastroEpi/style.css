@@ -1,4 +1,4 @@
-.formContainer{
+.formContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -17,14 +17,14 @@ form {
   row-gap: 20px;
   border-radius: 20px;
 
-  & input{
+  & input {
     border-radius: 20px;
     border: none;
     padding: 10px;
     outline: none;
   }
 
-  & button{
+  & button {
     border-radius: 20px;
     padding: 5px;
     border: none;
@@ -32,17 +32,12 @@ form {
     font-weight: bold;
   }
 
-  & button:hover{
+  & button:hover {
     opacity: 0.8;
   }
 }
-.cards{
-  display: flex;
-  flex-direction: column;
-  row-gap: 15px;
-  align-items: center;
-}
-.card{
+
+.epiCard {
   background-color: rgba(0, 0, 0, 0.349);
   padding: 20px;
   display: flex;
@@ -50,9 +45,32 @@ form {
   max-width: 65%;
   width: 500px;
   border-radius: 20px;
-
-  &button{
-    background: transparent;
-  }
+  cursor: default;
 }
 
+.epiCards {
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+  align-items: center;
+}
+
+#trash {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.homeButton {
+  border-radius: 20px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  width: 150px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.homeButton:hover {
+  opacity: 0.8;
+}
