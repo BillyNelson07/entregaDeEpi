@@ -14,7 +14,7 @@ const supaBaseKey = process.env.SUPABASE_KEY;
 
 //verifica se as variaveis de ambiente existem antes de criar o client
 if(!supaBaseUrl || !supaBaseKey){
-    throw new Error('As variáveis de ambiente SUPABASE_KEY e SUPABASE_URL precisam ser definidas')
+    throw new Error('As variáveis de ambiente SUPABASE_KEY ou SUPABASE_URL precisam ser definidas')
 }
 
 //usa as informações que passei para criar o cliente e entao se conectar na nuvem
