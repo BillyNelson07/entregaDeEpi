@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const supabase = require('../supabaseClient');
 const funcionarioController = require('../controllers/funcionarioController');
 
 router.get('/', funcionarioController.getAllFuncionarios);
